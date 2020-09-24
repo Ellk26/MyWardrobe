@@ -16,6 +16,7 @@
 		B270DF2B251925C200851014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B270DF29251925C200851014 /* LaunchScreen.storyboard */; };
 		B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF3A25192B0A00851014 /* WeatherViewController.swift */; };
 		B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF3F25192CCA00851014 /* ClosetViewController.swift */; };
+		B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B270DF2C251925C200851014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270DF3A25192B0A00851014 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		B270DF3F25192CCA00851014 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
+		B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				B270DF3A25192B0A00851014 /* WeatherViewController.swift */,
 				B270DF3F25192CCA00851014 /* ClosetViewController.swift */,
 				B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */,
+				B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */,
 				B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */,
 				B270DF1C251925C100851014 /* AppDelegate.swift in Sources */,
+				B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */,
 				B270DF1E251925C100851014 /* SceneDelegate.swift in Sources */,
 				B270DF26251925C100851014 /* MyWardrobe.xcdatamodeld in Sources */,
 			);

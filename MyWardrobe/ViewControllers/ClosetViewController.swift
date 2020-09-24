@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource   {
 
     private var collectionView: UICollectionView?
     
@@ -26,16 +26,40 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.dataSource = self
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
+        
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap))
+        self.view.addGestureRecognizer(longTap)
     }
     
-    // TODO: call an capture image controller and allow user to take picture and add text to description
+    // TODO: call a capture image controller and allow user to take picture and add text to description
     @objc func addItem(){
         print("add")
+        let addItemVC = UINavigationController(rootViewController: AddItemViewController())
+        addItemVC.modalPresentationStyle = .fullScreen
+        present(addItemVC, animated: true)
+        // allow user to pick an image or take a picture to use
+//        let vc = UIImagePickerController()
+//        vc.sourceType = .photoLibrary
+//        vc.delegate = self
+//        vc.allowsEditing = true
+//        present(vc, animated: true)
+        
+        // create the item with the image
+        
+        // let user type in details 
+        
+        // save the image to core data
+        
+        // reload collection view 
     }
     
     // TODO: give user options to sort items based on certain descriptor categories
     @objc func sortItems(){
         print("filter")
+    }
+    
+    @objc func longTap(){
+        print("long tap")
     }
 
     // TODO: Add model for item with core data
@@ -59,7 +83,7 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
-        cell.configure(label: "Custom \(indexPath.row)")
+//        cell.configure(label: "Custom \(indexPath.row)")
         
         return cell
     }
@@ -68,4 +92,17 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     // TODO: add delete method
     
     
+}
+
+extension ClosetViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
+            print(image)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
