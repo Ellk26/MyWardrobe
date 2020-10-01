@@ -52,6 +52,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
                                                   height: contentView.frame.size.height - 50)
     }
     
+    public func configureImage(image: UIImage){
+        myImageView.image = image
+    }
+    
 //    public func configure(label: String){
 //        myLabel.text = label
 //        

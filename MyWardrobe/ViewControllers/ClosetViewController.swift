@@ -10,6 +10,8 @@ import UIKit
 class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource   {
 
     private var collectionView: UICollectionView?
+    var items:[Item]?
+    let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,28 +31,20 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let longTap = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap))
         self.view.addGestureRecognizer(longTap)
+        
+        fetchItems()
     }
     
-    // TODO: call a capture image controller and allow user to take picture and add text to description
+    override func viewWillAppear(_ animated: Bool) {
+        fetchItems()
+    }
+    
+    // MARK: Add, Filter, Delete
     @objc func addItem(){
         print("add")
         let addItemVC = UINavigationController(rootViewController: AddItemViewController())
         addItemVC.modalPresentationStyle = .fullScreen
         present(addItemVC, animated: true)
-        // allow user to pick an image or take a picture to use
-//        let vc = UIImagePickerController()
-//        vc.sourceType = .photoLibrary
-//        vc.delegate = self
-//        vc.allowsEditing = true
-//        present(vc, animated: true)
-        
-        // create the item with the image
-        
-        // let user type in details 
-        
-        // save the image to core data
-        
-        // reload collection view 
     }
     
     // TODO: give user options to sort items based on certain descriptor categories
@@ -62,10 +56,27 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         print("long tap")
     }
 
-    // TODO: Add model for item with core data
+    // MARK: Core Data functions
+    
+    func fetchItems(){
+        do{
+            self.items = try context.fetch(Item.fetchRequest())
+            
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+            
+        }catch{
+            
+        }
+        
+        
+        
+    }
     
     
-    // collection view
+    
+    // MARK: CollectionView Functions
     
     func layoutCollectionView() -> UICollectionViewFlowLayout{
         let layout = UICollectionViewFlowLayout()
@@ -78,31 +89,19 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
 //        cell.configure(label: "Custom \(indexPath.row)")
         
+        let image = UIImage(data: (items![indexPath.row].itemImage)!)!
+        cell.configureImage(image: image)
+        
         return cell
     }
     
-    // TODO: add VC for editing descriptors or items
-    // TODO: add delete method
     
     
-}
-
-extension ClosetViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
-            print(image)
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
+}// end of class

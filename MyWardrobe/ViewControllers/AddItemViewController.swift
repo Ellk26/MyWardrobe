@@ -9,7 +9,7 @@ import UIKit
 
 class AddItemViewController: UITableViewController, UINavigationControllerDelegate {
     
-    // Define all tableView cells
+    // Define tableView cells
     var imageCell: UITableViewCell = UITableViewCell()
     let categoryCell: UITableViewCell = UITableViewCell()
     let subCategoryCell: UITableViewCell = UITableViewCell()
@@ -25,6 +25,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     var brandText: UITextField = UITextField()
     var seasonText: UITextField = UITextField()
     
+    let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func loadView() {
         super.loadView()
@@ -40,23 +41,23 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         
         
         self.categoryText = UITextField(frame: self.categoryCell.contentView.bounds.insetBy(dx: 15,dy: 0))
-        self.categoryText.placeholder = "Cateogry"
+        self.categoryText.placeholder = "Cateogry e.g. Tops, Bottoms, Shoes"
         self.categoryCell.addSubview(self.categoryText)
         
         self.subCategoryText = UITextField(frame: self.subCategoryCell.contentView.bounds.insetBy(dx: 15,dy: 0))
-        self.subCategoryText.placeholder = "Sub-Cateogry"
+        self.subCategoryText.placeholder = "Sub-Cateogry e.g. Shirt, Jeans"
         self.subCategoryCell.addSubview(self.subCategoryText)
         
         self.colorText = UITextField(frame: self.colorCell.contentView.bounds.insetBy(dx: 15,dy: 0))
-        self.colorText.placeholder = "Color"
+        self.colorText.placeholder = "Color e.g. black, white, blue"
         self.colorCell.addSubview(self.colorText)
         
         self.brandText = UITextField(frame: self.brandCell.contentView.bounds.insetBy(dx: 15,dy: 0))
-        self.brandText.placeholder = "Brand"
+        self.brandText.placeholder = "Brand e.g. Nike, Adidas"
         self.brandCell.addSubview(self.brandText)
 
         self.seasonText = UITextField(frame: self.seasonCell.contentView.bounds.insetBy(dx: 15,dy: 0))
-        self.seasonText.placeholder = "Season"
+        self.seasonText.placeholder = "Season e.g. summer, winter, autumn, spring"
         self.seasonCell.addSubview(self.seasonText)
         
         
@@ -74,7 +75,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.addItem))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveItem))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
     }
     
@@ -84,8 +85,23 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     }
     
     // TODO: save user input to core data object
-    @objc func addItem(){
-        print("adding item")
+    @objc func saveItem(){
+        print("save")
+        let item = Item(context: self.context)
+        item.itemImage = imgView.image?.pngData()
+        item.itemCategory = categoryText.text
+        item.itemSubCategory = subCategoryText.text
+        item.itemBrand = brandText.text
+        item.itemColor = colorText.text
+        item.itemSeason = seasonText.text
+        
+        // save the data
+        do {
+            try self.context.save()
+        }catch{
+            
+        }
+        dismiss(animated: true)
     }
     
     @objc func imgTap(){
@@ -103,7 +119,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     func configureImageView(){
         imgView.frame.size = CGSize(width: view.frame.width, height: 500)
         imgView.isUserInteractionEnabled = true
-        guard let image = UIImage(systemName: "camera") else { return }
+        guard let image = UIImage(systemName: "camera.fill") else { return }
         imgView.image = image
         imgView.backgroundColor = .gray
         
@@ -119,6 +135,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     }
     
     func setTextFieldConstraints(textField: UITextField, tableViewCell: UITableViewCell){
+        textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.topAnchor.constraint(equalTo: tableViewCell.topAnchor, constant: 5).isActive = true
         textField.bottomAnchor.constraint(equalTo: tableViewCell.bottomAnchor, constant: -5).isActive = true
@@ -185,5 +202,12 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
         guard let image = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true)
         imgView.image = image
+    }
+}
+
+extension AddItemViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

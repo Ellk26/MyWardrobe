@@ -16,6 +16,8 @@
 		B270DF2B251925C200851014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B270DF29251925C200851014 /* LaunchScreen.storyboard */; };
 		B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF3A25192B0A00851014 /* WeatherViewController.swift */; };
 		B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF3F25192CCA00851014 /* ClosetViewController.swift */; };
+		B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */; };
+		B2DB73D62526422200EC890A /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */; };
 		B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		B270DF2C251925C200851014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B270DF3A25192B0A00851014 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		B270DF3F25192CCA00851014 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
+		B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +68,7 @@
 		B270DF1A251925C100851014 /* MyWardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				B2DB73C92526221300EC890A /* Model */,
 				B270DF3525192A8B00851014 /* ViewControllers */,
 				B270DF1B251925C100851014 /* AppDelegate.swift */,
 				B270DF1D251925C100851014 /* SceneDelegate.swift */,
@@ -85,6 +90,15 @@
 				B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B2DB73C92526221300EC890A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */,
+				B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +173,8 @@
 				B270DF20251925C100851014 /* ViewController.swift in Sources */,
 				B20A7CB6251A65FA00C24EEE /* CustomCollectionViewCell.swift in Sources */,
 				B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */,
+				B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */,
+				B2DB73D62526422200EC890A /* Item+CoreDataProperties.swift in Sources */,
 				B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */,
 				B270DF1C251925C100851014 /* AppDelegate.swift in Sources */,
 				B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */,
