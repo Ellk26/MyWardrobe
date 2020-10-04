@@ -27,6 +27,8 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     
     let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var category = ""
+    
     override func loadView() {
         super.loadView()
         self.title = "Add Item"
@@ -77,8 +79,13 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveItem))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        
+        self.categoryText.text = category
     }
     
+    func update(){
+        print("UPDATING FUNCTION")
+    }
     
     @objc func cancel(){
         dismiss(animated: true, completion: nil)

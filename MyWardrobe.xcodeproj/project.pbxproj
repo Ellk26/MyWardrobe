@@ -19,6 +19,7 @@
 		B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */; };
 		B2DB73D62526422200EC890A /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */; };
 		B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */; };
+		B2FDF7E32527AC2F004DB346 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				B270DF3F25192CCA00851014 /* ClosetViewController.swift */,
 				B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */,
 				B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */,
+				B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B270DF20251925C100851014 /* ViewController.swift in Sources */,
+				B2FDF7E32527AC2F004DB346 /* HeaderCollectionReusableView.swift in Sources */,
 				B20A7CB6251A65FA00C24EEE /* CustomCollectionViewCell.swift in Sources */,
 				B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */,
 				B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */,
