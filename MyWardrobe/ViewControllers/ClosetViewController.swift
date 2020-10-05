@@ -188,7 +188,8 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
             let addItemVC = UINavigationController(rootViewController: AddItemViewController())
             addItemVC.modalPresentationStyle = .fullScreen
             let editVC = addItemVC.viewControllers.first as? AddItemViewController
-            editVC?.update()
+            editVC?.previousItem = item
+            editVC?.updateItem = true
             present(addItemVC, animated: true)
         case .select:
            dictionarySelectedIndexPath[indexPath] = true

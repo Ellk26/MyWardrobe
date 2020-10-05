@@ -14,7 +14,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "house")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -69,15 +69,15 @@ class CustomCollectionViewCell: UICollectionViewCell {
 //                                            width: contentView.frame.size.width - 10,
 //                                            height: 50)
         
-        myImageView.frame = CGRect(x: 5,
+        myImageView.frame = CGRect(x: 0,
                                                   y: 0,
-                                                  width: contentView.frame.size.width - 10,
-                                                  height: contentView.frame.size.height - 50)
+                                                  width: contentView.frame.size.width,
+                                                  height: contentView.frame.size.height)
         
-        highlightView.frame = CGRect(x: 5,
+        highlightView.frame = CGRect(x: 0,
                                                      y: 0,
-                                                     width: contentView.frame.size.width - 10,
-                                                     height: contentView.frame.size.height - 50)
+                                                     width: contentView.frame.size.width,
+                                                     height: contentView.frame.size.height)
     }
     
     public func configureImage(image: UIImage){

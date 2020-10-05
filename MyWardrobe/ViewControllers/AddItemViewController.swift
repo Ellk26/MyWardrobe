@@ -28,6 +28,8 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var category = ""
+    var previousItem = Item()
+    var updateItem = false
     
     override func loadView() {
         super.loadView()
@@ -80,21 +82,29 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveItem))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         
-        self.categoryText.text = category
-    }
-    
-    func update(){
-        print("UPDATING FUNCTION")
+        if updateItem{
+            self.imgView.image = UIImage(data: previousItem.itemImage!)
+            self.categoryText.text = previousItem.itemCategory
+            self.subCategoryText.text = previousItem.itemSubCategory
+            self.brandText.text = previousItem.itemBrand
+            self.colorText.text = previousItem.itemColor
+            self.seasonText.text = previousItem.itemSeason
+        }
     }
     
     @objc func cancel(){
         dismiss(animated: true, completion: nil)
     }
     
-    // TODO: save user input to core data object
     @objc func saveItem(){
         print("save")
-        let item = Item(context: self.context)
+        var item = Item()
+        if updateItem{
+            item = previousItem
+        }else{
+            item = Item(context: self.context)
+        }
+        
         item.itemImage = imgView.image?.pngData()
         item.itemCategory = categoryText.text
         item.itemSubCategory = subCategoryText.text
@@ -108,6 +118,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         }catch{
             
         }
+        updateItem = false
         dismiss(animated: true)
     }
     
