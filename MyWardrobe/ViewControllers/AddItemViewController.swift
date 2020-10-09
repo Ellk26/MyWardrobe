@@ -33,7 +33,12 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     
     override func loadView() {
         super.loadView()
-        self.title = "Add Item"
+        if updateItem{
+            self.title = "Update Item"
+        }else{
+            self.title = "Add Item"
+        }
+        
         
         // Construct cells
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(self.imgTap))

@@ -21,7 +21,7 @@ class ViewController: UITabBarController {
         
         self.setViewControllers([weatherVC, closetVC], animated: false)
         guard let items = self.tabBar.items else {return}
-        let images = ["cloud", "star"]
+        let images = ["sparkles", "star"]
         for x in 0..<items.count{
             items[x].image = UIImage(systemName: images[x])
         }

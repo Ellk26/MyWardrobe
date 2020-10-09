@@ -112,18 +112,16 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         // delete biggest item first to the smallest
         for i in deleteAtIndexPaths.sorted(by: {$0.item > $1.item}){
-            //items?.remove(at: i.item)
             self.context.delete(items![i.item])
         }
         
         do{
              try self.context.save()
         }catch{
-            
+            fatalError("Could not save context")
         }
         fetchItems()
         
-        //collectionView?.deleteItems(at: deleteAtIndexPaths)
         dictionarySelectedIndexPath.removeAll()
     }
     
@@ -139,7 +137,7 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
             
         }catch{
-            
+            fatalError("could not fetch items")
         }
     }
     
@@ -149,7 +147,6 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        //layout.itemSize = CGSize(width: view.frame.size.width/2.2, height: view.frame.size.width/2.2)
         layout.itemSize = CGSize(width: (view.frame.size.width/3)-4, height: (view.frame.size.width/3)-4)
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
