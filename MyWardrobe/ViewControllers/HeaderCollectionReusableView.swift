@@ -7,23 +7,25 @@
 
 import UIKit
 
-class HeaderCollectionReusableView: UICollectionReusableView {
+class HeaderCollectionReusableView: UICollectionReusableView, UISearchBarDelegate{
         
     static let identifier = "HeaderCollectionReuseableView"
     
-    
-    private let searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.showsCancelButton = true
         return searchBar
     }()
     
-    public func configure(){
+    public func configure() -> UISearchBar{
         backgroundColor = .white
         addSubview(searchBar)
+        return searchBar
     }
     
     override func layoutSubviews(){
         super.layoutSubviews()
         searchBar.frame = bounds
     }
+    
 }

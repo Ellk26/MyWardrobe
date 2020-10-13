@@ -89,11 +89,11 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         
         if updateItem{
             self.imgView.image = UIImage(data: previousItem.itemImage!)
-            self.categoryText.text = previousItem.itemCategory
-            self.subCategoryText.text = previousItem.itemSubCategory
-            self.brandText.text = previousItem.itemBrand
-            self.colorText.text = previousItem.itemColor
-            self.seasonText.text = previousItem.itemSeason
+            self.categoryText.text = previousItem.itemCategory?.capitalized
+            self.subCategoryText.text = previousItem.itemSubCategory?.capitalized
+            self.brandText.text = previousItem.itemBrand?.capitalized
+            self.colorText.text = previousItem.itemColor?.capitalized
+            self.seasonText.text = previousItem.itemSeason?.capitalized
         }
     }
     
@@ -102,7 +102,6 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     }
     
     @objc func saveItem(){
-        print("save")
         var item = Item()
         if updateItem{
             item = previousItem
@@ -111,11 +110,11 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         }
         
         item.itemImage = imgView.image?.pngData()
-        item.itemCategory = categoryText.text
-        item.itemSubCategory = subCategoryText.text
-        item.itemBrand = brandText.text
-        item.itemColor = colorText.text
-        item.itemSeason = seasonText.text
+        item.itemCategory = categoryText.text?.lowercased()
+        item.itemSubCategory = subCategoryText.text?.lowercased()
+        item.itemBrand = brandText.text?.lowercased()
+        item.itemColor = colorText.text?.lowercased()
+        item.itemSeason = seasonText.text?.lowercased()
         
         // save the data
         do {

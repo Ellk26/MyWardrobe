@@ -7,11 +7,12 @@
 
 import UIKit
 
-class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout   {
+class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     private var collectionView: UICollectionView?
     
     var items:[Item]?
+    var filteredItems:[Item]?
     let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     enum Mode{
@@ -62,7 +63,7 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCollectionView())
         guard let collectionView = collectionView else { return }
         
@@ -76,7 +77,6 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
-        
         
         // Navigation bar
         setupBarButtonItems()
@@ -126,7 +126,7 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
 
-    // MARK: Core Data functions
+    // MARK: Core Data function
     
     func fetchItems(){
         do{
@@ -169,7 +169,6 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
-        //        cell.configure(label: "Custom \(indexPath.row)")
         
         let image = UIImage(data: (items![indexPath.row].itemImage)!)!
         cell.configureImage(image: image)
@@ -204,7 +203,8 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as! HeaderCollectionReusableView
-        header.configure()
+        let searchbar = header.configure()
+        searchbar.delegate = self
         
         return header
     }
@@ -213,7 +213,41 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
         return CGSize(width: view.frame.size.width, height: 50)
     }
     
+   
+    
+    
+} // end of class
+
+// MARK: Searching Function
+extension ClosetViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let compareText = searchBar.text?.lowercased()
+        items = items?.filter({ return
+                                                                    $0.itemCategory == compareText ||
+                                                                    $0.itemSubCategory == compareText ||
+                                                                    $0.itemBrand == compareText ||
+                                                                    $0.itemColor == compareText ||
+                                                                    $0.itemSeason == compareText
+                                                        })
+
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        fetchItems()
+    }
     
     
     
-}// end of class
+    
+    
+}
