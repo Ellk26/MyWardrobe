@@ -86,13 +86,29 @@
 			isa = PBXGroup;
 			children = (
 				B270DF1F251925C100851014 /* ViewController.swift */,
-				B270DF3A25192B0A00851014 /* WeatherViewController.swift */,
+				B27B5BCC253A655400F311C8 /* WeatherViews */,
+				B27B5BCA253A64FA00F311C8 /* ClosetViews */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B27B5BCA253A64FA00F311C8 /* ClosetViews */ = {
+			isa = PBXGroup;
+			children = (
 				B270DF3F25192CCA00851014 /* ClosetViewController.swift */,
 				B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */,
 				B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */,
 				B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */,
 			);
-			path = ViewControllers;
+			path = ClosetViews;
+			sourceTree = "<group>";
+		};
+		B27B5BCC253A655400F311C8 /* WeatherViews */ = {
+			isa = PBXGroup;
+			children = (
+				B270DF3A25192B0A00851014 /* WeatherViewController.swift */,
+			);
+			path = WeatherViews;
 			sourceTree = "<group>";
 		};
 		B2DB73C92526221300EC890A /* Model */ = {

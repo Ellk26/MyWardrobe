@@ -92,7 +92,6 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // MARK: Add, Filter, Delete
     @objc func addItem(){
-        print("add")
         let addItemVC = UINavigationController(rootViewController: AddItemViewController())
         addItemVC.modalPresentationStyle = .fullScreen
         present(addItemVC, animated: true)
@@ -142,7 +141,7 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // MARK: Setup Functions
-    
+
     func layoutCollectionView() -> UICollectionViewFlowLayout{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
