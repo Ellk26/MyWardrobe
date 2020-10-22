@@ -12,7 +12,6 @@ class ClosetViewController: UIViewController, UICollectionViewDelegate, UICollec
     private var collectionView: UICollectionView?
     
     var items:[Item]?
-    var filteredItems:[Item]?
     let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     enum Mode{

@@ -127,7 +127,6 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     }
     
     @objc func imgTap(){
-        print("in img tap")
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
