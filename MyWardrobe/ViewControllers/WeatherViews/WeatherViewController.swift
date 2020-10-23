@@ -20,6 +20,8 @@ class WeatherViewController: UIViewController, UICollectionViewDelegate, UIColle
         return searchController
     }()
     
+    let pageController = UIPageViewController()
+    
     private var weatherCollectionView: UICollectionView?
     private var clothingItemsCollectionView: UICollectionView?
     
@@ -39,7 +41,6 @@ class WeatherViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         weatherCollectionView.delegate = self
         weatherCollectionView.dataSource = self
-        //weatherCollectionView.backgroundColor = .blue
         
         view.addSubview(weatherCollectionView)
         setupConstraintsWeatherCollectionView()
@@ -52,6 +53,12 @@ class WeatherViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         view.addSubview(clothingItemsCollectionView)
         setupContraintsClothingItemsCollectionView()
+        
+        // Register cells
+        
+        weatherCollectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeatherCollectionViewCell.identifier)
+        
+        clothingItemsCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         
         
     }
@@ -88,19 +95,34 @@ class WeatherViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func layoutClothingItemsCollectionView() -> UICollectionViewFlowLayout{
         let layout = UICollectionViewFlowLayout()
-        
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.itemSize = CGSize(width: (view.frame.size.width/4), height: (view.frame.size.width/4))
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
         return layout
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        if collectionView == self.weatherCollectionView{
+            return 4
+        }
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        return cell
+        if collectionView == self.weatherCollectionView{
+            let cell = weatherCollectionView!.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.identifier, for: indexPath) as! WeatherCollectionViewCell
+            
+            return cell
+        }else{
+            let cell = clothingItemsCollectionView!.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            
+            return cell
+        }
+        
     }
     
 }

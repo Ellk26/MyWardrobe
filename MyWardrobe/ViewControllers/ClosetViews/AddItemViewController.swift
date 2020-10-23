@@ -79,7 +79,6 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         setTextFieldConstraints(textField: colorText, tableViewCell: colorCell)
         setTextFieldConstraints(textField: seasonText, tableViewCell: seasonCell)
         
-        
     }
     
     override func viewDidLoad() {

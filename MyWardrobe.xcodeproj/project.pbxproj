@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B20A7CB6251A65FA00C24EEE /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */; };
+		B22B18AA25424EA9001EFC64 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */; };
 		B270DF1C251925C100851014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1B251925C100851014 /* AppDelegate.swift */; };
 		B270DF1E251925C100851014 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1D251925C100851014 /* SceneDelegate.swift */; };
 		B270DF20251925C100851014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1F251925C100851014 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		B270DF18251925C100851014 /* MyWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270DF1B251925C100851014 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B270DF1D251925C100851014 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				B270DF3A25192B0A00851014 /* WeatherViewController.swift */,
+				B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */,
 			);
 			path = WeatherViews;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */,
 				B270DF1C251925C100851014 /* AppDelegate.swift in Sources */,
 				B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */,
+				B22B18AA25424EA9001EFC64 /* WeatherCollectionViewCell.swift in Sources */,
 				B270DF1E251925C100851014 /* SceneDelegate.swift in Sources */,
 				B270DF26251925C100851014 /* MyWardrobe.xcdatamodeld in Sources */,
 			);
