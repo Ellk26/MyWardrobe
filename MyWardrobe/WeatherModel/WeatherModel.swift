@@ -39,7 +39,7 @@ class WeatherModel{
     
     func getWeatherData(location: String, completion: @escaping(WeatherData) -> Void){
     
-        guard let url = URL(string: "\(Constants.WEATHER_URL)\(location),CA&units=\(Constants.UNITS)&appid=\(Constants.API_KEY)") else { return }
+        guard let url = URL(string: "\(MyConstants.WEATHER_URL)\(location),CA&units=\(MyConstants.UNITS)&appid=\(MyConstants.API_KEY)") else { return }
         
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
