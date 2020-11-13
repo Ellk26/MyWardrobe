@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B20A7CB6251A65FA00C24EEE /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */; };
 		B22B18AA25424EA9001EFC64 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */; };
+		B23D88DD254886E4000C0A65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D88DC254886E4000C0A65 /* Constants.swift */; };
+		B23D88E0254887C6000C0A65 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D88DF254887C6000C0A65 /* WeatherModel.swift */; };
 		B270DF1C251925C100851014 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1B251925C100851014 /* AppDelegate.swift */; };
 		B270DF1E251925C100851014 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1D251925C100851014 /* SceneDelegate.swift */; };
 		B270DF20251925C100851014 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF1F251925C100851014 /* ViewController.swift */; };
@@ -19,6 +21,7 @@
 		B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B270DF3F25192CCA00851014 /* ClosetViewController.swift */; };
 		B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */; };
 		B2DB73D62526422200EC890A /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */; };
+		B2E61A67255F08A900F975E9 /* MyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E61A66255F08A900F975E9 /* MyConstants.swift */; };
 		B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */; };
 		B2FDF7E32527AC2F004DB346 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +29,8 @@
 /* Begin PBXFileReference section */
 		B20A7CB5251A65FA00C24EEE /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		B23D88DC254886E4000C0A65 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B23D88DF254887C6000C0A65 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		B270DF18251925C100851014 /* MyWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B270DF1B251925C100851014 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B270DF1D251925C100851014 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +43,7 @@
 		B270DF3F25192CCA00851014 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		B2DB73D32526422200EC890A /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B2DB73D42526422200EC890A /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B2E61A66255F08A900F975E9 /* MyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConstants.swift; sourceTree = "<group>"; };
 		B2F1F3D7251D1E32001AE542 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		B2FDF7E22527AC2F004DB346 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +80,8 @@
 			children = (
 				B2DB73C92526221300EC890A /* Model */,
 				B270DF3525192A8B00851014 /* ViewControllers */,
+				B2D0F5C225473BC400409489 /* WeatherModel */,
+				B2D0F5C325473BCF00409489 /* Utilities */,
 				B270DF1B251925C100851014 /* AppDelegate.swift */,
 				B270DF1D251925C100851014 /* SceneDelegate.swift */,
 				B270DF27251925C200851014 /* Assets.xcassets */,
@@ -112,6 +120,23 @@
 				B22B18A925424EA9001EFC64 /* WeatherCollectionViewCell.swift */,
 			);
 			path = WeatherViews;
+			sourceTree = "<group>";
+		};
+		B2D0F5C225473BC400409489 /* WeatherModel */ = {
+			isa = PBXGroup;
+			children = (
+				B23D88DF254887C6000C0A65 /* WeatherModel.swift */,
+			);
+			path = WeatherModel;
+			sourceTree = "<group>";
+		};
+		B2D0F5C325473BCF00409489 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B23D88DC254886E4000C0A65 /* Constants.swift */,
+				B2E61A66255F08A900F975E9 /* MyConstants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		B2DB73C92526221300EC890A /* Model */ = {
@@ -198,9 +223,12 @@
 				B270DF3B25192B0A00851014 /* WeatherViewController.swift in Sources */,
 				B2DB73D52526422200EC890A /* Item+CoreDataClass.swift in Sources */,
 				B2DB73D62526422200EC890A /* Item+CoreDataProperties.swift in Sources */,
+				B2E61A67255F08A900F975E9 /* MyConstants.swift in Sources */,
 				B270DF4025192CCA00851014 /* ClosetViewController.swift in Sources */,
+				B23D88DD254886E4000C0A65 /* Constants.swift in Sources */,
 				B270DF1C251925C100851014 /* AppDelegate.swift in Sources */,
 				B2F1F3D8251D1E32001AE542 /* AddItemViewController.swift in Sources */,
+				B23D88E0254887C6000C0A65 /* WeatherModel.swift in Sources */,
 				B22B18AA25424EA9001EFC64 /* WeatherCollectionViewCell.swift in Sources */,
 				B270DF1E251925C100851014 /* SceneDelegate.swift in Sources */,
 				B270DF26251925C100851014 /* MyWardrobe.xcdatamodeld in Sources */,

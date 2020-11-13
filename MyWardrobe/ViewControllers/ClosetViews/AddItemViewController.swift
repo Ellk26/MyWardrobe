@@ -115,24 +115,62 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         item.itemColor = colorText.text?.lowercased()
         item.itemSeason = seasonText.text?.lowercased()
         
-        // save the data
-        do {
-            try self.context.save()
-        }catch{
+        if item.itemCategory == "" || item.itemSubCategory == "" || item.itemBrand == "" || item.itemColor == "" || item.itemSeason == ""{
             
+            let ac = UIAlertController(title: "Fill in all fields", message: "", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }else{
+            // save the data
+            do {
+                try self.context.save()
+            }catch{
+                fatalError("Could not save item")
+            }
+            updateItem = false
+            dismiss(animated: true)
         }
-        updateItem = false
-        dismiss(animated: true)
+       
+       
     }
     
     @objc func imgTap(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
+        
+        let ac = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in self.openCamera()}))
+        ac.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {_ in self.openGallery()}))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(ac, animated: true)
     }
     
+    func openCamera(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
+            let vc = UIImagePickerController()
+            vc.sourceType = .camera
+            vc.delegate = self
+            vc.allowsEditing = true
+            self.present(vc, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Warning", message: "You don't have a camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+       
+    }
+    
+    func openGallery(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Warning", message: "You don't have permision to photo library", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     // MARK: Configuration and Constraint functions 
     
