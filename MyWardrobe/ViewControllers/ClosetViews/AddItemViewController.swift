@@ -28,7 +28,7 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var category = ""
-    var previousItem = Item()
+    var previousItem: Item?
     var updateItem = false
     
     override func loadView() {
@@ -47,7 +47,6 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         imageCell.preservesSuperviewLayoutMargins = false
         imageCell.separatorInset = UIEdgeInsets.zero
         imageCell.layoutMargins = UIEdgeInsets.zero
-        
         
         self.categoryText = UITextField(frame: self.categoryCell.contentView.bounds.insetBy(dx: 15,dy: 0))
         self.categoryText.placeholder = "Cateogry e.g. Tops, Bottoms, Shoes"
@@ -69,7 +68,6 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         self.seasonText.placeholder = "Season e.g. summer, winter, autumn, spring"
         self.seasonCell.addSubview(self.seasonText)
         
-        
         configureImageView()
         
         // set textfield constraints
@@ -87,12 +85,14 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         
         if updateItem{
-            self.imgView.image = UIImage(data: previousItem.itemImage!)
-            self.categoryText.text = previousItem.itemCategory?.capitalized
-            self.subCategoryText.text = previousItem.itemSubCategory?.capitalized
-            self.brandText.text = previousItem.itemBrand?.capitalized
-            self.colorText.text = previousItem.itemColor?.capitalized
-            self.seasonText.text = previousItem.itemSeason?.capitalized
+            if let previousItem = previousItem{
+                self.imgView.image = UIImage(data: previousItem.itemImage!)
+                self.categoryText.text = previousItem.itemCategory?.capitalized
+                self.subCategoryText.text = previousItem.itemSubCategory?.capitalized
+                self.brandText.text = previousItem.itemBrand?.capitalized
+                self.colorText.text = previousItem.itemColor?.capitalized
+                self.seasonText.text = previousItem.itemSeason?.capitalized
+            }
         }
     }
     
@@ -101,36 +101,45 @@ class AddItemViewController: UITableViewController, UINavigationControllerDelega
     }
     
     @objc func saveItem(){
-        var item = Item()
+        var item: Item?
         if updateItem{
             item = previousItem
         }else{
             item = Item(context: self.context)
         }
         
-        item.itemImage = imgView.image?.pngData()
-        item.itemCategory = categoryText.text?.lowercased()
-        item.itemSubCategory = subCategoryText.text?.lowercased()
-        item.itemBrand = brandText.text?.lowercased()
-        item.itemColor = colorText.text?.lowercased()
-        item.itemSeason = seasonText.text?.lowercased()
-        
-        if item.itemCategory == "" || item.itemSubCategory == "" || item.itemBrand == "" || item.itemColor == "" || item.itemSeason == ""{
+        if let item = item {
+            item.itemImage = imgView.image?.pngData()
+            item.itemCategory = categoryText.text?.lowercased()
+            item.itemSubCategory = subCategoryText.text?.lowercased()
+            item.itemBrand = brandText.text?.lowercased()
+            item.itemColor = colorText.text?.lowercased()
+            item.itemSeason = seasonText.text?.lowercased()
             
-            let ac = UIAlertController(title: "Fill in all fields", message: "", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        }else{
-            // save the data
-            do {
-                try self.context.save()
-            }catch{
-                fatalError("Could not save item")
+            if item.itemCategory == "" || item.itemSubCategory == "" || item.itemBrand == "" || item.itemColor == "" || item.itemSeason == ""{
+                
+                let ac = UIAlertController(title: "Fill in all fields", message: "", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                present(ac, animated: true)
+                context.delete(item)
             }
-            updateItem = false
+            
+            else if item.itemCategory != "" && item.itemSubCategory != "" && item.itemBrand != "" && item.itemColor != "" && item.itemSeason != ""{
+                // save the data
+                do {
+                    try self.context.save()
+                }catch{
+                    fatalError("Could not save item")
+                }
+                updateItem = false
+                dismiss(animated: true)
+            }
+        }else{
             dismiss(animated: true)
         }
-       
+        
+     
+        
        
     }
     
